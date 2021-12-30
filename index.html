@@ -1,0 +1,340 @@
+<html>
+    <head>
+        <title>Xxx</title>
+        <meta charset="utf-8"/>
+        <style>
+            .ana{
+                width:1000px;
+                height:950px;
+            }
+            .ust{
+                background-color: #FF00E7;
+                width:1000px;
+                height:50px;
+                position:relative;
+            }
+            .ara{
+                background-color: #FF00F7;
+                border:3px solid #7900B1;
+                margin-top:10px;
+                margin-left:7px;
+                border-radius: 4px;
+                height:30px;
+                color:white;
+                width:200px;
+                text-decoration: underline;
+                text-decoration-style: dashed;
+                text-decoration-color: white;
+            }
+            .ara::placeholder{
+                text-align:center;
+                color:white;
+                text-decoration: normal;
+            }
+            .ara-btn{
+                background-color: #FF00F7;
+                border:3px solid #7900B1;
+                border-radius: 4px;
+                color:white;
+                margin-top:10px;
+                margin-right:10px;
+                height:30px;
+            }
+            .ara-btn:active{
+                background-color: #A5009B;
+            }
+            .alt{
+                width:1000px;
+                height:900px;
+                overflow:hidden;
+                position:relative;
+            }
+            .alt .yan{
+                float:left;
+                background-color: #8B0068;
+                width:200px;
+                height:900px;
+            }
+            .alt .yan select{
+                color:white;
+                background-color: #E300EB;
+            }
+            .video-ustu{
+                width:800px;
+                height:900px;
+                float:left;
+            }
+            .alt .videolar{
+                width:800px;
+                height:850px;
+                background-color: #BE00A4;
+            }
+            .uyari{
+                width:1000px;
+                height:100px;
+                background-color: #E036FF;
+            }
+            .alt .videolar .vidyo{
+                width:250px;
+                height:180px;
+                background-color: black;
+                border: 5px solid #800070;
+                margin-left:50px;
+                margin-right:20px;
+                margin-bottom:70px;
+                float:left;
+            }
+            .alt .videolar .vidyo h4{
+                color:white;
+                margin:0px;
+            }
+            .alt .videolar .vidyo hr{
+                border:1px dashed white;
+            }
+            .alt .videolar .vidyo .baslik{
+                height:35px;
+                background-color: #FF00FC;
+                text-align: center;
+            }
+            .alt .videolar .vidyo .ic{
+                background-color: #AC00A2;
+                height:145px;
+            }
+            .alt .videolar .video-alt{
+                height: 750px;
+                width:700px;
+                overflow: hidden;
+            }
+            .alt .video-ustu .altlik{
+                height:40px;
+                width:800px;
+                color: white;
+                padding-top: 10px;
+                background-color: #9B006F;
+            }
+            .alt .video-ustu .altlik select{
+                color:white;
+                background-color: #E300EB;
+            }
+            .alt .video-ustu .altlik button{
+                background-color: #FF00F7;
+                border:3px solid #7900B1;
+                border-radius: 4px;
+                color:white;
+                height:25px;
+            }
+            .alt .video-ustu .altlik button:active{
+                background-color: #A5009B;
+            }
+            .acilir-menu{
+				background-color:#807;
+				width:260px;
+				height:900px;
+				margin-left:1000px;
+				position:absolute;
+				transition:margin 0.8s,background-color 1s;
+			}
+			.acilir-menu p{
+				text-align:center;
+				color:white;
+			}
+			.acilir-menu.hadi{
+				margin-left:740px;
+				background-color:#f0f;
+			}
+			.kategoriler{
+				width:180px;
+				min-height:250px;
+				background-color:#a0a;
+				margin-left:10px;
+				padding-top:10px;
+			}
+			.kategoriler .kategori{
+				width:120px;
+				border-radius:10px;
+				height:17px;
+				background:#f0f;
+				margin-bottom:5px;
+				text-align:center;
+				color:white;
+				padding-top:3px;
+				font-size:10px;
+				float:left;
+			}
+			.kateg{
+				width:180px;
+				height:25px;
+			}
+        </style>
+        <script>
+        	var ls=[];
+        	var say=0;
+			function ac_lan(){
+				var bs=document.getElementById("menu_ac");
+				bs.classList.add("hadi");
+				dt=false;
+			}
+			function ara_kontrol(){
+				dt=false;
+			}
+			function kapa(){
+				if(dt){
+					var bs=document.getElementById("menu_ac");
+					bs.classList.remove("hadi");
+				}
+				dt=true;
+			}
+			function kateg(){
+				var k=document.getElementById("gir-kateg");
+				var ktg=document.getElementById("kategler");
+				ktg.innerHTML+='<div class="kateg"><input id="sec'+say+'" style="float:left" type="checkbox"><div class="kategori">'+k.value+'</div><button onclick="sil_alt('+say+')" style="float:left;height:20px;margin:0px;margin-left:5px;padding:0px 5px;" class="ara-btn">sil</button></div>';
+				ls.push(k.value);
+				say+=1;
+			}
+			function sil(){
+				var sll=[];
+				for(var i=0;i<say;i++){
+					var dt=document.getElementById("sec"+i);
+					if(dt.checked){
+						sll.push(i);
+					}
+				}
+				var dtt=0;
+				for(var i=0;i<sll.length;i++){
+					ls.splice(sll[i]-dtt,1);
+					dtt+=1;
+				}
+				var k=document.getElementById("kategler");
+				k.innerHTML="";
+				for(var i=0;i<ls.length;i++){
+					k.innerHTML+='<div class="kateg"><input id="sec'+i+'" style="float:left" type="checkbox"><div class="kategori">'+ls[i]+'</div><button onclick="sil_alt('+i+')" style="float:left;height:20px;margin:0px;margin-left:5px;padding:0px 5px;" class="ara-btn">sil</button></div>';
+				}
+				say=ls.length;
+			}
+			function sil_alt(a){
+				ls.splice(a,1);
+				var k=document.getElementById("kategler");
+				k.innerHTML="";
+				for(var i=0;i<ls.length;i++){
+					k.innerHTML+='<div class="kateg"><input id="sec'+i+'" style="float:left" type="checkbox"><div class="kategori">'+ls[i]+'</div><button onclick="sil_alt('+i+')" style="float:left;height:20px;margin:0px;margin-left:5px;padding:0px 5px;" class="ara-btn">sil</button></div>';
+				}
+				say=ls.length;
+			}
+			var dt=false;
+		</script>
+    </head>
+    <body onclick="kapa()">
+        <div class="ana">
+            <div class="ust">
+                <img onclick="ac_lan(this)" class="bas" style="positon:absolute;width:50px;height:50px;float:right" src="https://upload.wikimedia.org/wikipedia/commons/5/59/Hamburger_icon_white.svg"></img>
+                <h1 style="padding-left:50px;margin:0px;color:white;text-align:center;padding-top:10px">Deneme Videos</h1>
+            </div>
+            <div class="alt">
+            	 <div id="menu_ac" onclick="ara_kontrol()" class="acilir-menu">
+                	<input type="text" class="ara" placeholder="Ara"/>
+                	<button class="ara-btn">Ara</button>
+					<p>Araçlar</p>
+					<p>Takip edenler</p>
+					<p>Takip ettiklerin</p>
+					<p>Ayarlar</p>
+					<p>Karıya yatır</p>
+				</div>
+                <div class="yan">
+                    <h3 style="margin:0px;color:white;text-align:center;padding-bottom:10px">Kategoriler</h3>
+                    <hr style="border:5px white dashed;border-bottom:0px">
+                    <b style="color:white">Özelliklere göre filtrele:</b><br>
+                    <input type="text" id="gir-kateg" placeholder="kategori-tag(#) gir" class="ara" style="margin-left:5px;margin-bottom:10px;width:130px">
+                    <button class="ara-btn" onclick="kateg()">ekle</button>
+                    <div class="kategoriler" id="kategler">
+                    </div>
+                    <button class="ara-btn" onclick="sil()" style="margin:0px;margin-left:10px">komple sil</button>
+                    <select multiple>
+                        <option>Kategori</option>
+                        <option>Tag</option>
+                        <option>Video</option>
+                        <option>Yazı</option>
+                        <option>Sadece Seçili</option>
+                    </select>
+                </div>
+                <div class="video-ustu">
+                    <div class="videolar">
+                        <h3 style="color:white;margin:0px;text-align:center">Videolar</h3><hr style="border-bottom:5px solid white;border-top:10px white dotted"><br>
+                        <div class="video-alt" >
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>Enes Batur</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                            </div>
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>Hentai eleştiri</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                            </div>
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>En saçma Türk filmi</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                                </div>
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>Liseli</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                                </div>
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>3 günde 20cm</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                            </div>
+                            <div class="vidyo">
+                                    <div class="baslik">
+                                        <h4>Ermeni leşler</h4><hr>
+                                    </div>
+                                    <div class="ic">
+                                        
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="altlik">
+                        <button><b>&lt;&lt;</b></button>
+                        <select>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <button><b>&gt;&gt;</b></button>
+                        <select>
+                            <option>En son</option>
+                            <option>Bugün</option>
+                            <option>En popüler</option>
+                            <option>Takip ettiklerim</option>
+                            <option>Trendler</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uyari">
+            <h3 style="text-align:center;color:yellow;margin:0px;padding-top:10px"><u>Önemli Uyarı</u></h3>
+            <b style="color:red"><u>Not:</u></b>Bu sitede paylaşılanlardan müessesemiz sorumlu değildir.<br>
+	  	  <p style="margin-left:200px;"><b><u>&copy;Bütün haklar saklıdır!!!</u></b></p>
+        </div>
+    </body>
+</html>
